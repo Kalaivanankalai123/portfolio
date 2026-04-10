@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kalaivanan K | AI & Robotics Engineer</title>
+  <meta name="description" content="Kalaivanan K portfolio - AI & Robotics Engineer building real-world intelligent robotic systems.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #05090f;
+      --bg-soft: #0a1320;
+      --panel: rgba(10, 18, 30, 0.78);
+      --panel-strong: rgba(12, 23, 37, 0.94);
+      --line: rgba(99, 139, 183, 0.28);
+      --text: #e8f1ff;
+      --text-soft: #9eb7d5;
+      --muted: #6f89a9;
+      --accent: #00d1ff;
+      --accent-soft: rgba(0, 209, 255, 0.22);
+      --accent-warm: #ff9f43;
+      --success: #3ad29f;
+      --danger: #ff6b6b;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --shadow: 0 20px 44px rgba(2, 9, 16, 0.45);
+      --font: "Sora", sans-serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background: radial-gradient(circle at 0% 0%, #0a1a2d 0%, transparent 35%),
+                  radial-gradient(circle at 100% 10%, #171930 0%, transparent 32%),
+                  linear-gradient(135deg, #04070d, #081120 45%, #070c18 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(81, 120, 162, 0.09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(81, 120, 162, 0.09) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black 42%, transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, 92vw);
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .nav {
+      position: sticky;
+      top: 14px;
+      z-index: 30;
+      margin-top: 16px;
+      background: rgba(6, 12, 22, 0.76);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.32);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 0.82rem;
+      color: #03111f;
+      background: conic-gradient(from 180deg, #25e8ff, #ff9f43, #25e8ff);
+      font-family: var(--mono);
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--text-soft);
+      font-size: 0.92rem;
+      padding: 6px 10px;
+      border-radius: 999px;
+      transition: 180ms ease;
+    }
+
+    .nav-links a:hover {
+      background: var(--accent-soft);
+      color: var(--text);
+    }
+
+    .section {
+      padding: 72px 0 20px;
+    }
+
+    .hero {
+      min-height: calc(100vh - 100px);
+      display: grid;
+      align-items: center;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 38px;
+      padding-top: 52px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-soft);
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 30px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--accent));
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 5.4vw, 4.5rem);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .hero-role {
+      color: var(--accent);
+      font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .hero-tagline {
+      color: var(--text-soft);
+      max-width: 62ch;
+      margin-bottom: 26px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      font-weight: 600;
+      padding: 11px 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+      font-family: var(--font);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #032337;
+      background: linear-gradient(130deg, #58f4ff, #00d1ff);
+      box-shadow: 0 10px 26px rgba(0, 209, 255, 0.28);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      border: 1px solid var(--line);
+      background: rgba(15, 24, 38, 0.86);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(0, 209, 255, 0.5);
+      background: rgba(17, 30, 45, 0.92);
+    }
+
+    .hero-panel {
+      background: linear-gradient(150deg, rgba(10, 22, 35, 0.96), rgba(8, 15, 25, 0.75));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      right: -60px;
+      top: -60px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 209, 255, 0.35), rgba(0, 209, 255, 0));
+      filter: blur(6px);
+    }
+
+    .profile-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .profile-photo {
+      width: 98px;
+      height: 98px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(0, 209, 255, 0.62);
+      box-shadow: 0 0 0 5px rgba(0, 209, 255, 0.14);
+      flex-shrink: 0;
+      background: rgba(7, 15, 24, 0.8);
+    }
+
+    .profile-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .profile-copy h3 {
+      font-size: 1.02rem;
+      margin-bottom: 2px;
+    }
+
+    .profile-copy p {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      line-height: 1.45;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(120px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .stat {
+      background: rgba(9, 20, 33, 0.78);
+      border: 1px solid rgba(108, 147, 184, 0.28);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .stat h3 {
+      font-size: 1.4rem;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+
+    .stat p {
+      color: var(--text-soft);
+      font-size: 0.86rem;
+    }
+
+    .section-head {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.5rem, 3.1vw, 2.2rem);
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+    }
+
+    .section-head p {
+      color: var(--text-soft);
+      max-width: 60ch;
+    }
+
+    .about-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-points {
+      margin-top: 14px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .about-points li {
+      list-style: none;
+      border-left: 2px solid rgba(0, 209, 255, 0.5);
+      padding-left: 10px;
+      color: var(--text-soft);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(240px, 1fr));
+      gap: 14px;
+    }
+
+    .skill-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      transition: transform 220ms ease, border-color 220ms ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 209, 255, 0.54);
+    }
+
+    .skill-card h3 {
+      margin-bottom: 12px;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+
+    .tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: #d9ecff;
+      border: 1px solid rgba(130, 166, 201, 0.32);
+      background: rgba(8, 19, 32, 0.8);
+      border-radius: 999px;
+      padding: 5px 10px;
+    }
+
+    .projects-wrap {
+      display: grid;
+      gap: 14px;
+    }
+
+    .project-main {
+      background: linear-gradient(135deg, rgba(7, 18, 30, 0.95), rgba(9, 25, 39, 0.88));
+      border: 1px solid rgba(0, 209, 255, 0.38);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+      position: relative;
+      isolation: isolate;
+    }
+
+    .project-main::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(0, 209, 255, 0.15), rgba(0, 209, 255, 0));
+      z-index: 0;
+    }
+
+    .project-main-inner {
+      position: relative;
+      z-index: 1;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+    }
+
+    .project-title {
+      font-size: clamp(1.25rem, 2.5vw, 1.8rem);
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .project-copy {
+      color: var(--text-soft);
+      margin-bottom: 14px;
+    }
+
+    .highlight-points {
+      display: grid;
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .highlight-points li {
+      list-style: none;
+      color: #cce7ff;
+      font-size: 0.92rem;
+      position: relative;
+      padding-left: 14px;
+    }
+
+    .highlight-points li::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+      position: absolute;
+      left: 0;
+      top: 9px;
+    }
+
+    .project-stats {
+      background: rgba(10, 20, 31, 0.88);
+      border: 1px solid rgba(102, 140, 173, 0.33);
+      border-radius: 14px;
+      padding: 16px;
+      align-self: start;
+    }
+
+    .project-stats h4 {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: var(--mono);
+    }
+
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      border-top: 1px dashed rgba(111, 137, 169, 0.35);
+      padding: 8px 0;
+      font-size: 0.9rem;
+    }
+
+    .metric:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .metric b {
+      color: #dff5ff;
+      font-weight: 600;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+      transform-style: preserve-3d;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 159, 67, 0.65);
+      box-shadow: 0 22px 34px rgba(0, 0, 0, 0.36);
+    }
+
+    .project-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .project-card p {
+      color: var(--text-soft);
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 11px;
+      top: 7px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), rgba(0, 209, 255, 0));
+      opacity: 0.75;
+    }
+
+    .time-item {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 14px 16px 14px 24px;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+
+    .time-item::before {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      left: 7px;
+      top: 18px;
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(0, 209, 255, 0.2);
+    }
+
+    .time-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .time-head h3 {
+      font-size: 1.03rem;
+    }
+
+    .time-period {
+      color: var(--accent-warm);
+      font-family: var(--mono);
+      font-size: 0.82rem;
+    }
+
+    .time-item p {
+      color: var(--text-soft);
+      font-size: 0.94rem;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 70px;
+    }
+
+    .contact-card,
+    .contact-form {
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .contact-item {
+      padding: 11px 12px;
+      border: 1px solid rgba(112, 146, 176, 0.28);
+      border-radius: 12px;
+      background: rgba(6, 14, 22, 0.62);
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      color: var(--text-soft);
+      font-size: 0.92rem;
+    }
+
+    .contact-item a {
+      color: #d7ecff;
+      text-decoration: underline;
+      text-decoration-color: rgba(0, 209, 255, 0.45);
+      text-underline-offset: 3px;
+    }
+
+    .contact-form form {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .form-status {
+      min-height: 1.4em;
+      font-size: 0.88rem;
+      color: var(--text-soft);
+    }
+
+    .input,
+    textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(111, 137, 169, 0.38);
+      background: rgba(4, 10, 18, 0.78);
+      color: var(--text);
+      padding: 10px 12px;
+      font-family: var(--font);
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 180ms ease;
+    }
+
+    .input:focus,
+    textarea:focus {
+      border-color: rgba(0, 209, 255, 0.6);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .foot {
+      color: var(--muted);
+      font-size: 0.84rem;
+      text-align: center;
+      padding: 24px 0 40px;
+      border-top: 1px solid rgba(94, 119, 149, 0.2);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 520ms ease, transform 520ms ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 36px;
+      }
+
+      .project-main-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .section {
+        padding-top: 54px;
+      }
+
+      .skills-grid,
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        border-radius: 18px;
+      }
+
+      .nav-inner {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="#top">
+          <span class="brand-badge">KK</span>
+          <span>Kalaivanan K</span>
+        </a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero section" id="top">
+      <div class="reveal">
+        <span class="eyebrow">AI | Robotics | Applied Systems</span>
+        <h1>Kalaivanan K</h1>
+        <p class="hero-role">AI & Robotics Engineer</p>
+        <p class="hero-tagline">
+          Building intelligent robotics systems that move from simulation to real-world execution with practical autonomy, live control interfaces, and robust perception pipelines.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-secondary" href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel reveal">
+        <div class="profile-wrap">
+          <div class="profile-photo">
+            <img src="assets/profile-photo.jpeg" alt="Kalaivanan K portrait">
+          </div>
+          <div class="profile-copy">
+            <h3>Kalaivanan K</h3>
+            <p>AI & Robotics Engineer building field-ready autonomous systems.</p>
+          </div>
+        </div>
+        <span class="eyebrow">Current Focus</span>
+        <p style="color: var(--text-soft); margin-bottom: 8px;">
+          AI & Robotics Intern at ARAI Solutions, developing LLM-powered document intelligence workflows and practical automation systems.
+        </p>
+        <div class="stat-grid">
+          <div class="stat">
+            <h3>3+</h3>
+            <p>Core projects shipped</p>
+          </div>
+          <div class="stat">
+            <h3>ROS2</h3>
+            <p>Navigation stack work</p>
+          </div>
+          <div class="stat">
+            <h3>2026</h3>
+            <p>B.Tech graduation year</p>
+          </div>
+          <div class="stat">
+            <h3>CGPA 8.1</h3>
+            <p>AI & DS track</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section reveal" id="about">
+      <div class="section-head">
+        <h2>About Me</h2>
+        <p>Hands-on engineer focused on AI systems, robotics autonomy, and real deployment outcomes.</p>
+      </div>
+      <article class="about-card">
+        <p>
+          I am an AI and Robotics Engineer with a B.Tech background in Artificial Intelligence and Data Science, building practical systems across autonomous robotics and document intelligence.
+          My work combines machine learning, computer vision, and full-stack interfaces to deliver usable products rather than isolated models.
+        </p>
+        <ul class="about-points">
+          <li>Developed autonomous navigation systems using LiDAR-based SLAM and obstacle-aware planning.</li>
+          <li>Built web dashboards for remote robot control, live video streaming, and gesture-driven interaction.</li>
+          <li>Designed LLM-powered workflows to extract structured outputs from unstructured documents.</li>
+          <li>Comfortable owning end-to-end pipelines from data and inference logic to deployment UI.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section reveal" id="skills">
+      <div class="section-head">
+        <h2>Skills</h2>
+        <p>Focused stack for AI application development, autonomous robotics, and deployment-ready systems.</p>
+      </div>
+      <div class="skills-grid">
+        <article class="skill-card">
+          <h3>Programming</h3>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">C++</span>
+            <span class="tag">SQL</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </article>
+        <article class="skill-card">
+          <h3>Robotics</h3>
+          <div class="tags">
+            <span class="tag">ROS2</span>
+            <span class="tag">Nav2</span>
+            <span class="tag">SLAM</span>
+            <span class="tag">Autonomous Navigation</span>
+          </div>
+        </article>
+        <article class="skill-card">
+          <h3>Hardware</h3>
+          <div class="tags">
+            <span class="tag">Raspberry Pi</span>
+            <span class="tag">Arduino</span>
+            <span class="tag">LiDAR</span>
+            <span class="tag">IMU</span>
+          </div>
+        </article>
+        <article class="skill-card">
+          <h3>Tools</h3>
+          <div class="tags">
+            <span class="tag">Git</span>
+            <span class="tag">Linux</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">TensorFlow</span>
+            <span class="tag">Scikit-learn</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="projects">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p>Applied systems with measurable engineering outcomes, from autonomous vehicles to LLM document pipelines.</p>
+      </div>
+
+      <article class="project-main">
+        <div class="project-main-inner">
+          <div>
+            <span class="eyebrow">Featured Project</span>
+            <h3 class="project-title">Autonomous UGV with SLAM, Navigation, and Web-Based Remote Control</h3>
+            <p class="project-copy">
+              Built an autonomous unmanned ground vehicle to solve real-time mapping and safe path execution in dynamic spaces. The system integrates LiDAR-based SLAM for map creation, Nav2-enabled navigation for obstacle-aware movement, and a responsive web dashboard for operator control.
+            </p>
+            <div class="tags" style="margin-bottom: 10px;">
+              <span class="tag">ROS2</span>
+              <span class="tag">Nav2</span>
+              <span class="tag">LiDAR SLAM</span>
+              <span class="tag">OpenCV</span>
+              <span class="tag">WebRTC / Streaming UI</span>
+            </div>
+            <ul class="highlight-points">
+              <li>Integrated live video feed and low-latency teleoperation dashboard for field operation.</li>
+              <li>Added gesture-based interaction layer using computer vision for intuitive control.</li>
+              <li>Enabled autonomous navigation with real-time obstacle handling and route updates.</li>
+            </ul>
+          </div>
+          <aside class="project-stats">
+            <h4>Key Achievements</h4>
+            <div class="metric"><span>Real-world mapping</span><b>LiDAR SLAM</b></div>
+            <div class="metric"><span>Navigation stack</span><b>ROS2 + Nav2</b></div>
+            <div class="metric"><span>Operator interface</span><b>Live web dashboard</b></div>
+            <div class="metric"><span>Human interaction</span><b>Gesture control</b></div>
+            <div class="metric"><span>Deployment mode</span><b>Autonomous + Remote</b></div>
+          </aside>
+        </div>
+      </article>
+
+      <div class="project-grid" style="margin-top: 14px;">
+        <article class="project-card tilt-card">
+          <h3>AI-Based Heart Disease Diagnosis from X-rays</h3>
+          <p>
+            Developed a CNN-based diagnostic assistant that analyzes chest X-ray images and predicts heart disease risk with a usable web interface for quick inference.
+          </p>
+          <div class="tags">
+            <span class="tag">TensorFlow</span>
+            <span class="tag">Keras</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">Flask UI</span>
+          </div>
+        </article>
+
+        <article class="project-card tilt-card">
+          <h3>LLM-Based Document Processing System</h3>
+          <p>
+            Built an LLM-powered web app to extract structured information from PDFs and text, then generate outputs including summaries, instructions, quizzes, and flashcards.
+          </p>
+          <div class="tags">
+            <span class="tag">Open-source LLMs</span>
+            <span class="tag">RAG-style flow</span>
+            <span class="tag">Document Intelligence</span>
+            <span class="tag">Local Deployment</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="experience">
+      <div class="section-head">
+        <h2>Experience</h2>
+        <p>Industry exposure across AI workflows, NLP systems, and real-world intelligent automation.</p>
+      </div>
+      <div class="timeline">
+        <article class="time-item">
+          <div class="time-head">
+            <h3>AI & Robotics Intern - ARAI Solutions</h3>
+            <span class="time-period">Dec 2025 - Present</span>
+          </div>
+          <p>
+            Worked with LLM-based retrieval pipelines to generate structured outputs from unstructured documents. Built web-facing interfaces and contributed to robotics and AI automation workflows.
+          </p>
+        </article>
+        <article class="time-item">
+          <div class="time-head">
+            <h3>Intern - TechShikSha</h3>
+            <span class="time-period">Aug 2024 - Sep 2024</span>
+          </div>
+          <p>
+            Contributed to NLP and document intelligence tasks, and gained enterprise process exposure through an industry visit to Microsoft.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="education">
+      <div class="section-head">
+        <h2>Education</h2>
+        <p>Academic foundation focused on AI theory, practical implementation, and data-driven engineering.</p>
+      </div>
+      <div class="timeline">
+        <article class="time-item">
+          <div class="time-head">
+            <h3>B.Tech - Artificial Intelligence and Data Science</h3>
+            <span class="time-period">2022 - 2026</span>
+          </div>
+          <p>Anna University - M.A.M College of Engineering | CGPA: 8.1</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section reveal" id="contact">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <p>Open to AI engineering, robotics, and intelligent automation opportunities.</p>
+      </div>
+      <div class="contact-wrap">
+        <article class="contact-card">
+          <h3 style="margin-bottom: 6px;">Let us connect</h3>
+          <p style="color: var(--text-soft);">Best way to reach me for collaborations, roles, or project discussions.</p>
+          <div class="contact-list">
+            <div class="contact-item">
+              <span>Email</span>
+              <a href="mailto:kalaivanankkalai5@gmail.com">kalaivanankkalai5@gmail.com</a>
+            </div>
+            <div class="contact-item">
+              <span>LinkedIn</span>
+              <a href="https://www.linkedin.com/in/kalaivanan-k-971bba287" target="_blank" rel="noopener noreferrer">linkedin.com/in/kalaivanan-k-971bba287</a>
+            </div>
+            <div class="contact-item">
+              <span>GitHub</span>
+              <a href="https://github.com/Kalaivanankalai123" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">github.com/Kalaivanankalai123</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="contact-form">
+          <h3 style="margin-bottom: 6px;">Quick Message</h3>
+          <p style="color: var(--text-soft);">Send directly to my inbox. Your details are stored securely for follow-up.</p>
+          <form id="mailForm">
+            <input class="input" id="senderName" name="name" type="text" placeholder="Your name" required>
+            <input class="input" id="senderEmail" name="email" type="email" placeholder="Your email" required>
+            <input class="input" id="senderPhone" name="phone" type="tel" placeholder="Your mobile number" required>
+            <textarea id="senderMessage" name="message" placeholder="Your message" required></textarea>
+            <button class="btn btn-primary" type="submit">Send Message</button>
+            <p id="formStatus" class="form-status"></p>
+          </form>
+        </article>
+      </div>
+    </section>
+
+    <footer class="foot">
+      Designed and developed by Kalaivanan K | AI & Robotics Engineer
+    </footer>
+  </div>
+
+  <script>
+    const API_BASE = window.location.protocol === "file:" ? "http://127.0.0.1:8000" : "";
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    reveals.forEach((item, index) => {
+      item.style.transitionDelay = `${Math.min(index * 45, 240)}ms`;
+      observer.observe(item);
+    });
+
+    const tiltCards = document.querySelectorAll(".tilt-card");
+
+    tiltCards.forEach((card) => {
+      card.addEventListener("mousemove", (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const rotateY = ((x / rect.width) - 0.5) * 6;
+        const rotateX = ((y / rect.height) - 0.5) * -6;
+        card.style.transform = `translateY(-4px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+      });
+    });
+
+    const form = document.getElementById("mailForm");
+    const formStatus = document.getElementById("formStatus");
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const name = document.getElementById("senderName").value.trim();
+      const email = document.getElementById("senderEmail").value.trim();
+      const phone = document.getElementById("senderPhone").value.trim();
+      const msg = document.getElementById("senderMessage").value.trim();
+
+      formStatus.textContent = "Sending...";
+      try {
+        const response = await fetch(`${API_BASE}/api/contact`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            phone: phone,
+            message: msg
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const result = await response.json();
+        if (result.email_sent) {
+          formStatus.textContent = "Message sent successfully. I will get back to you soon.";
+        } else {
+          formStatus.textContent = "Message saved successfully. Email relay is currently not configured.";
+        }
+        form.reset();
+      } catch (error) {
+        formStatus.textContent = "Could not send right now. Please try again in a moment.";
+        console.error("Contact submit failed:", error);
+      }
+    });
+
+    async function trackViewer() {
+      const payload = {
+        page: window.location.pathname || "/portfolio.html",
+        referrer: document.referrer || "",
+        user_agent: navigator.userAgent,
+        language: navigator.language || "",
+        platform: navigator.platform || "",
+        screen_width: window.screen.width,
+        screen_height: window.screen.height,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || ""
+      };
+
+      try {
+        await fetch(`${API_BASE}/api/portfolio/view`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+      } catch (error) {
+        console.debug("Viewer tracking unavailable:", error);
+      }
+    }
+
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    let points = [];
+    let width = 0;
+    let height = 0;
+
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * window.devicePixelRatio;
+      canvas.height = height * window.devicePixelRatio;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+      points = Array.from({ length: Math.max(30, Math.floor(width / 40)) }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25
+      }));
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(67, 211, 255, 0.6)";
+        ctx.arc(p.x, p.y, 1.4, 0, Math.PI * 2);
+        ctx.fill();
+
+        for (let j = i + 1; j < points.length; j++) {
+          const q = points[j];
+          const dx = p.x - q.x;
+          const dy = p.y - q.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 95) {
+            const alpha = (1 - dist / 95) * 0.17;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(0, 209, 255, ${alpha})`;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(animateParticles);
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+    animateParticles();
+    trackViewer();
+  </script>
+</body>
+</html>
