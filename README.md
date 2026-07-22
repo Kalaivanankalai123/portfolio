@@ -4,12 +4,12 @@ A modern, full-stack personal portfolio and analytics system designed to showcas
 
 The project consists of a highly interactive, glassmorphism-styled frontend and a Python (FastAPI) backend that handles custom viewer analytics and data persistence.
 
-## 🚀 Live Demo
+##  Live Demo
 **[Insert Your Render URL Here]**
 
 ---
 
-## 🧠 System Architecture & How It Works
+##  System Architecture & How It Works
 
 This project is more than just a static HTML site; it operates with a fully functional backend to gather analytics and manage data.
 
@@ -31,7 +31,7 @@ The contact form utilizes a hybrid approach to ensure reliable delivery bypassin
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 **Frontend:**
 * HTML5, CSS3, Vanilla JavaScript
@@ -51,7 +51,7 @@ The contact form utilizes a hybrid approach to ensure reliable delivery bypassin
 
 ---
 
-## 💻 Local Setup & Development
+##  Local Setup & Development
 
 To run this project locally on your machine:
 
