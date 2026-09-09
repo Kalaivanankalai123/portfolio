@@ -3,30 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kalaivanan K | AI & Robotics Engineer</title>
-  <meta name="description" content="Kalaivanan K portfolio - AI & Robotics Engineer building real-world intelligent robotic systems.">
+  <title>Kalaivanan K | Robotics Software Engineer</title>
+  <meta name="description" content="Kalaivanan K portfolio - Robotics Software Engineer building real-world intelligent robotic systems.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #05090f;
-      --bg-soft: #0a1320;
-      --panel: rgba(10, 18, 30, 0.78);
-      --panel-strong: rgba(12, 23, 37, 0.94);
-      --line: rgba(99, 139, 183, 0.28);
-      --text: #e8f1ff;
-      --text-soft: #9eb7d5;
-      --muted: #6f89a9;
-      --accent: #00d1ff;
-      --accent-soft: rgba(0, 209, 255, 0.22);
-      --accent-warm: #ff9f43;
-      --success: #3ad29f;
-      --danger: #ff6b6b;
-      --radius-lg: 24px;
-      --radius-md: 16px;
-      --radius-sm: 12px;
-      --shadow: 0 20px 44px rgba(2, 9, 16, 0.45);
+      /* Industrial Hardware Theme */
+      --bg: #04080f;
+      --bg-panel: #0b121c;
+      --panel-strong: #111a27;
+      --line: #203046;
+      --text: #e2e8f0;
+      --text-soft: #94a3b8;
+      --muted: #475569;
+      --accent: #ff5e00; /* Safety Orange */
+      --accent-soft: rgba(255, 94, 0, 0.15);
+      --accent-warm: #ffb700; /* Warning Yellow */
+      --success: #10b981;
+      --danger: #ef4444;
+      
+      /* Sharp edges, no rounding */
+      --radius-lg: 0px;
+      --radius-md: 0px;
+      --radius-sm: 0px;
+      
+      /* Hard, brutalist shadows */
+      --shadow: 6px 6px 0px rgba(0, 0, 0, 1);
+      --shadow-hover: 10px 10px 0px rgba(255, 94, 0, 0.2);
+      
       --font: "Sora", sans-serif;
       --mono: "JetBrains Mono", monospace;
     }
@@ -43,24 +49,22 @@
 
     body {
       font-family: var(--font);
-      background: radial-gradient(circle at 0% 0%, #0a1a2d 0%, transparent 35%),
-                  radial-gradient(circle at 100% 10%, #171930 0%, transparent 32%),
-                  linear-gradient(135deg, #04070d, #081120 45%, #070c18 100%);
+      background-color: var(--bg);
       color: var(--text);
       min-height: 100vh;
       line-height: 1.6;
       overflow-x: hidden;
     }
 
+    /* Blueprint Grid */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       background-image:
-        linear-gradient(rgba(81, 120, 162, 0.09) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(81, 120, 162, 0.09) 1px, transparent 1px);
-      background-size: 44px 44px;
-      mask-image: radial-gradient(circle at center, black 42%, transparent 100%);
+        linear-gradient(rgba(32, 48, 70, 0.45) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(32, 48, 70, 0.45) 1px, transparent 1px);
+      background-size: 40px 40px;
       pointer-events: none;
       z-index: 0;
     }
@@ -70,7 +74,7 @@
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.55;
+      opacity: 0.4;
     }
 
     a {
@@ -85,23 +89,23 @@
       z-index: 2;
     }
 
+    /* Sharp Navigation */
     .nav {
       position: sticky;
-      top: 14px;
+      top: 0;
       z-index: 30;
       margin-top: 16px;
-      background: rgba(6, 12, 22, 0.76);
+      background: var(--bg-panel);
       border: 1px solid var(--line);
-      border-radius: 999px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.32);
+      border-bottom: 3px solid var(--accent);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
 
     .nav-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 16px;
+      padding: 12px 20px;
       gap: 14px;
       flex-wrap: wrap;
     }
@@ -109,45 +113,49 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       font-weight: 700;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
+      font-family: var(--mono);
+      text-transform: uppercase;
     }
 
     .brand-badge {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
+      width: 30px;
+      height: 30px;
       display: grid;
       place-items: center;
       font-size: 0.82rem;
-      color: #03111f;
-      background: conic-gradient(from 180deg, #25e8ff, #ff9f43, #25e8ff);
-      font-family: var(--mono);
+      color: #000;
+      background: var(--accent);
       font-weight: 700;
     }
 
     .nav-links {
       display: flex;
-      gap: 14px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
     .nav-links a {
       color: var(--text-soft);
-      font-size: 0.92rem;
-      padding: 6px 10px;
-      border-radius: 999px;
-      transition: 180ms ease;
+      font-size: 0.85rem;
+      padding: 6px 12px;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: 150ms ease;
+      border: 1px solid transparent;
     }
 
     .nav-links a:hover {
       background: var(--accent-soft);
-      color: var(--text);
+      color: var(--accent);
+      border-color: var(--accent);
     }
 
     .section {
-      padding: 72px 0 20px;
+      padding: 80px 0 30px;
     }
 
     .hero {
@@ -163,30 +171,28 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      color: var(--text-soft);
+      color: var(--accent);
       font-family: var(--mono);
       font-size: 0.82rem;
-      letter-spacing: 0.7px;
+      letter-spacing: 1px;
       text-transform: uppercase;
       margin-bottom: 16px;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 30px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--accent));
+      background: var(--accent-soft);
+      padding: 4px 10px;
+      border-left: 3px solid var(--accent);
     }
 
     h1 {
       font-size: clamp(2.1rem, 5.4vw, 4.5rem);
       line-height: 1.1;
-      letter-spacing: -1px;
+      letter-spacing: -1.5px;
       margin-bottom: 12px;
+      text-transform: uppercase;
     }
 
     .hero-role {
-      color: var(--accent);
+      color: var(--text);
+      font-family: var(--mono);
       font-size: clamp(1.05rem, 2.5vw, 1.4rem);
       font-weight: 600;
       margin-bottom: 14px;
@@ -195,88 +201,85 @@
     .hero-tagline {
       color: var(--text-soft);
       max-width: 62ch;
-      margin-bottom: 26px;
+      margin-bottom: 30px;
     }
 
     .cta-row {
       display: flex;
-      gap: 12px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
     .btn {
       border: none;
       cursor: pointer;
-      border-radius: 999px;
-      font-weight: 600;
-      padding: 11px 20px;
+      font-weight: 700;
+      padding: 12px 24px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
-      font-family: var(--font);
+      transition: transform 150ms ease, box-shadow 150ms ease;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
+    .btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px rgba(0,0,0,1) !important;
     }
 
     .btn-primary {
-      color: #032337;
-      background: linear-gradient(130deg, #58f4ff, #00d1ff);
-      box-shadow: 0 10px 26px rgba(0, 209, 255, 0.28);
+      color: #000;
+      background: var(--accent);
+      border: 1px solid #000;
+      box-shadow: 4px 4px 0px rgba(0,0,0,1);
+    }
+
+    .btn-primary:hover {
+      background: #ff7529;
+      box-shadow: 6px 6px 0px rgba(0,0,0,1);
     }
 
     .btn-secondary {
-      color: var(--text);
-      border: 1px solid var(--line);
-      background: rgba(15, 24, 38, 0.86);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      background: var(--bg-panel);
+      box-shadow: 4px 4px 0px rgba(0,0,0,1);
     }
 
     .btn-secondary:hover {
-      border-color: rgba(0, 209, 255, 0.5);
-      background: rgba(17, 30, 45, 0.92);
+      background: var(--accent-soft);
     }
 
+    /* Chamfered Panels */
     .hero-panel {
-      background: linear-gradient(150deg, rgba(10, 22, 35, 0.96), rgba(8, 15, 25, 0.75));
+      background: var(--bg-panel);
       border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: 22px;
+      padding: 24px;
       box-shadow: var(--shadow);
       position: relative;
-      overflow: hidden;
-    }
-
-    .hero-panel::after {
-      content: "";
-      position: absolute;
-      right: -60px;
-      top: -60px;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 209, 255, 0.35), rgba(0, 209, 255, 0));
-      filter: blur(6px);
+      border-top: 4px solid var(--accent);
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
     }
 
     .profile-wrap {
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 14px;
+      gap: 16px;
+      margin-bottom: 16px;
     }
 
     .profile-photo {
-      width: 98px;
-      height: 98px;
-      border-radius: 50%;
+      width: 90px;
+      height: 90px;
       overflow: hidden;
-      border: 2px solid rgba(0, 209, 255, 0.62);
-      box-shadow: 0 0 0 5px rgba(0, 209, 255, 0.14);
+      border: 2px solid var(--accent);
       flex-shrink: 0;
-      background: rgba(7, 15, 24, 0.8);
+      background: #000;
+      clip-path: polygon(15% 0, 100% 0, 100% 85%, 85% 100%, 0 100%, 0 15%);
     }
 
     .profile-photo img {
@@ -284,109 +287,134 @@
       height: 100%;
       object-fit: cover;
       display: block;
+      filter: grayscale(20%) contrast(120%);
     }
 
     .profile-copy h3 {
-      font-size: 1.02rem;
+      font-size: 1.1rem;
       margin-bottom: 2px;
+      font-family: var(--mono);
+      text-transform: uppercase;
     }
 
     .profile-copy p {
       font-size: 0.85rem;
       color: var(--text-soft);
-      line-height: 1.45;
     }
 
     .stat-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(120px, 1fr));
-      gap: 10px;
-      margin-top: 12px;
+      gap: 12px;
+      margin-top: 16px;
     }
 
     .stat {
-      background: rgba(9, 20, 33, 0.78);
-      border: 1px solid rgba(108, 147, 184, 0.28);
-      border-radius: 12px;
-      padding: 12px;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+      padding: 14px;
+      border-left: 3px solid var(--accent-warm);
     }
 
     .stat h3 {
       font-size: 1.4rem;
-      color: var(--accent);
+      color: var(--text);
       line-height: 1.1;
+      font-family: var(--mono);
     }
 
     .stat p {
-      color: var(--text-soft);
-      font-size: 0.86rem;
+      color: var(--accent-warm);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+      font-family: var(--mono);
     }
 
     .section-head {
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       display: flex;
       justify-content: space-between;
       align-items: end;
       gap: 16px;
       flex-wrap: wrap;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
     }
 
     .section-head h2 {
-      font-size: clamp(1.5rem, 3.1vw, 2.2rem);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
       line-height: 1.2;
-      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      font-family: var(--mono);
+    }
+
+    .section-head h2::before {
+      content: "> ";
+      color: var(--accent);
     }
 
     .section-head p {
       color: var(--text-soft);
       max-width: 60ch;
+      font-size: 0.9rem;
     }
 
-    .about-card {
-      background: var(--panel);
+    .about-card, .skill-card, .contact-card, .contact-form {
+      background: var(--bg-panel);
       border: 1px solid var(--line);
-      border-radius: var(--radius-md);
       padding: 24px;
       box-shadow: var(--shadow);
     }
 
     .about-points {
-      margin-top: 14px;
+      margin-top: 16px;
       display: grid;
-      gap: 10px;
+      gap: 12px;
     }
 
     .about-points li {
       list-style: none;
-      border-left: 2px solid rgba(0, 209, 255, 0.5);
-      padding-left: 10px;
+      border-left: 2px solid var(--accent);
+      padding-left: 12px;
       color: var(--text-soft);
+      font-size: 0.95rem;
     }
 
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(240px, 1fr));
-      gap: 14px;
+      gap: 16px;
     }
 
     .skill-card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-md);
-      padding: 18px;
-      box-shadow: var(--shadow);
-      transition: transform 220ms ease, border-color 220ms ease;
+      transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
     }
 
     .skill-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(0, 209, 255, 0.54);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--accent);
     }
 
     .skill-card h3 {
-      margin-bottom: 12px;
-      font-size: 1.05rem;
-      color: var(--accent);
+      margin-bottom: 16px;
+      font-size: 1rem;
+      color: var(--text);
+      font-family: var(--mono);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .skill-card h3::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
     }
 
     .tags {
@@ -397,187 +425,151 @@
 
     .tag {
       font-family: var(--mono);
-      font-size: 0.78rem;
-      color: #d9ecff;
-      border: 1px solid rgba(130, 166, 201, 0.32);
-      background: rgba(8, 19, 32, 0.8);
-      border-radius: 999px;
-      padding: 5px 10px;
+      font-size: 0.75rem;
+      color: var(--accent-warm);
+      border: 1px solid var(--line);
+      background: var(--panel-strong);
+      padding: 4px 8px;
+      text-transform: uppercase;
     }
 
     .projects-wrap {
       display: grid;
-      gap: 14px;
+      gap: 16px;
     }
 
     .project-main {
-      background: linear-gradient(135deg, rgba(7, 18, 30, 0.95), rgba(9, 25, 39, 0.88));
-      border: 1px solid rgba(0, 209, 255, 0.38);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.45);
+      background: var(--bg-panel);
+      border: 1px solid var(--accent);
+      box-shadow: var(--shadow);
       position: relative;
-      isolation: isolate;
-    }
-
-    .project-main::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 80% 20%, rgba(0, 209, 255, 0.15), rgba(0, 209, 255, 0));
-      z-index: 0;
     }
 
     .project-main-inner {
-      position: relative;
-      z-index: 1;
-      padding: 24px;
+      padding: 28px;
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 20px;
+      gap: 24px;
     }
 
     .project-title {
-      font-size: clamp(1.25rem, 2.5vw, 1.8rem);
+      font-size: clamp(1.25rem, 2.5vw, 1.6rem);
       line-height: 1.25;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      font-family: var(--mono);
     }
 
     .project-copy {
       color: var(--text-soft);
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
     }
 
     .highlight-points {
       display: grid;
-      gap: 7px;
-      margin-top: 10px;
+      gap: 8px;
+      margin-top: 12px;
     }
 
     .highlight-points li {
       list-style: none;
-      color: #cce7ff;
-      font-size: 0.92rem;
+      color: var(--text);
+      font-size: 0.9rem;
       position: relative;
-      padding-left: 14px;
+      padding-left: 16px;
     }
 
     .highlight-points li::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--success);
+      content: "■";
+      color: var(--accent);
       position: absolute;
       left: 0;
-      top: 9px;
+      top: 0;
+      font-size: 0.7rem;
     }
 
     .project-stats {
-      background: rgba(10, 20, 31, 0.88);
-      border: 1px solid rgba(102, 140, 173, 0.33);
-      border-radius: 14px;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
       padding: 16px;
       align-self: start;
     }
 
     .project-stats h4 {
-      font-size: 0.85rem;
-      color: var(--text-soft);
-      margin-bottom: 8px;
+      font-size: 0.8rem;
+      color: var(--accent-warm);
+      margin-bottom: 12px;
       text-transform: uppercase;
       letter-spacing: 1px;
       font-family: var(--mono);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 6px;
     }
 
     .metric {
       display: flex;
       justify-content: space-between;
       gap: 10px;
-      border-top: 1px dashed rgba(111, 137, 169, 0.35);
       padding: 8px 0;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      border-bottom: 1px dotted var(--line);
     }
-
-    .metric:first-of-type {
-      border-top: none;
-      padding-top: 0;
+    
+    .metric:last-child {
+      border-bottom: none;
     }
 
     .metric b {
-      color: #dff5ff;
-      font-weight: 600;
+      color: var(--text);
+      font-family: var(--mono);
     }
 
     .project-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(260px, 1fr));
-      gap: 14px;
+      gap: 16px;
     }
 
     .project-card {
-      background: var(--panel);
+      background: var(--bg-panel);
       border: 1px solid var(--line);
-      border-radius: var(--radius-md);
-      padding: 18px;
+      padding: 20px;
       box-shadow: var(--shadow);
-      transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
-      transform-style: preserve-3d;
+      transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
     }
 
     .project-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(255, 159, 67, 0.65);
-      box-shadow: 0 22px 34px rgba(0, 0, 0, 0.36);
+      border-color: var(--accent);
+      box-shadow: var(--shadow-hover);
     }
 
     .project-card h3 {
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       font-size: 1.1rem;
+      font-family: var(--mono);
+      text-transform: uppercase;
     }
 
     .project-card p {
       color: var(--text-soft);
-      margin-bottom: 12px;
-      font-size: 0.95rem;
+      margin-bottom: 16px;
+      font-size: 0.9rem;
     }
 
     .timeline {
       display: grid;
-      gap: 12px;
-      position: relative;
-    }
-
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 11px;
-      top: 7px;
-      bottom: 8px;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--accent), rgba(0, 209, 255, 0));
-      opacity: 0.75;
+      gap: 16px;
     }
 
     .time-item {
-      background: var(--panel);
+      background: var(--bg-panel);
       border: 1px solid var(--line);
-      border-radius: var(--radius-md);
-      padding: 14px 16px 14px 24px;
+      padding: 20px 24px;
       position: relative;
+      border-left: 4px solid var(--accent);
       box-shadow: var(--shadow);
-    }
-
-    .time-item::before {
-      content: "";
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      left: 7px;
-      top: 18px;
-      background: var(--accent);
-      box-shadow: 0 0 0 5px rgba(0, 209, 255, 0.2);
     }
 
     .time-head {
@@ -585,96 +577,93 @@
       justify-content: space-between;
       align-items: baseline;
       gap: 10px;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       flex-wrap: wrap;
     }
 
     .time-head h3 {
-      font-size: 1.03rem;
+      font-size: 1.1rem;
+      font-family: var(--mono);
+      text-transform: uppercase;
     }
 
     .time-period {
       color: var(--accent-warm);
       font-family: var(--mono);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
+      background: var(--panel-strong);
+      padding: 2px 8px;
+      border: 1px solid var(--line);
     }
 
     .time-item p {
       color: var(--text-soft);
-      font-size: 0.94rem;
+      font-size: 0.95rem;
     }
 
     .contact-wrap {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 16px;
       margin-bottom: 70px;
-    }
-
-    .contact-card,
-    .contact-form {
-      background: var(--panel-strong);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-md);
-      padding: 20px;
-      box-shadow: var(--shadow);
     }
 
     .contact-list {
       display: grid;
-      gap: 10px;
-      margin-top: 12px;
+      gap: 12px;
+      margin-top: 16px;
     }
 
     .contact-item {
-      padding: 11px 12px;
-      border: 1px solid rgba(112, 146, 176, 0.28);
-      border-radius: 12px;
-      background: rgba(6, 14, 22, 0.62);
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      background: var(--panel-strong);
       display: flex;
       justify-content: space-between;
       gap: 10px;
       align-items: center;
       color: var(--text-soft);
-      font-size: 0.92rem;
+      font-size: 0.9rem;
+      font-family: var(--mono);
     }
 
     .contact-item a {
-      color: #d7ecff;
-      text-decoration: underline;
-      text-decoration-color: rgba(0, 209, 255, 0.45);
-      text-underline-offset: 3px;
+      color: var(--text);
+      transition: color 150ms ease;
+    }
+    
+    .contact-item a:hover {
+      color: var(--accent);
     }
 
     .contact-form form {
       display: grid;
-      gap: 10px;
-      margin-top: 10px;
+      gap: 12px;
+      margin-top: 16px;
     }
 
     .form-status {
       min-height: 1.4em;
-      font-size: 0.88rem;
-      color: var(--text-soft);
+      font-size: 0.85rem;
+      color: var(--accent-warm);
+      font-family: var(--mono);
+      margin-top: 8px;
     }
 
-    .input,
-    textarea {
+    .input, textarea {
       width: 100%;
-      border-radius: 10px;
-      border: 1px solid rgba(111, 137, 169, 0.38);
-      background: rgba(4, 10, 18, 0.78);
+      border: 1px solid var(--line);
+      background: var(--panel-strong);
       color: var(--text);
-      padding: 10px 12px;
-      font-family: var(--font);
-      font-size: 0.92rem;
+      padding: 12px;
+      font-family: var(--mono);
+      font-size: 0.9rem;
       outline: none;
-      transition: border-color 180ms ease;
+      transition: border-color 150ms ease;
     }
 
-    .input:focus,
-    textarea:focus {
-      border-color: rgba(0, 209, 255, 0.6);
+    .input:focus, textarea:focus {
+      border-color: var(--accent);
     }
 
     textarea {
@@ -684,21 +673,168 @@
 
     .foot {
       color: var(--muted);
-      font-size: 0.84rem;
+      font-size: 0.8rem;
       text-align: center;
       padding: 24px 0 40px;
-      border-top: 1px solid rgba(94, 119, 149, 0.2);
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      text-transform: uppercase;
     }
 
     .reveal {
       opacity: 0;
       transform: translateY(16px);
-      transition: opacity 520ms ease, transform 520ms ease;
+      transition: opacity 400ms ease, transform 400ms ease;
     }
 
     .reveal.in {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* Industrial Chat Widget */
+    .chat-bubble-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 56px;
+      height: 56px;
+      background: var(--accent);
+      border: 2px solid #000;
+      color: #000;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 4px 4px 0px rgba(0,0,0,1);
+      z-index: 9999;
+      font-size: 1.5rem;
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+
+    .chat-bubble-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px rgba(0,0,0,1);
+    }
+
+    .chat-window {
+      position: fixed;
+      bottom: 96px;
+      right: 24px;
+      width: min(380px, 92vw);
+      height: 500px;
+      background: var(--bg-panel);
+      border: 2px solid var(--accent);
+      box-shadow: var(--shadow);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: opacity 200ms ease, transform 200ms ease;
+    }
+
+    .chat-window.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(16px);
+    }
+
+    .chat-header {
+      padding: 14px 16px;
+      background: var(--accent);
+      border-bottom: 2px solid #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #000;
+    }
+
+    .chat-header h4 {
+      font-size: 0.9rem;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .chat-close {
+      background: none;
+      border: none;
+      color: #000;
+      cursor: pointer;
+      font-size: 1.5rem;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 0.85rem;
+      font-family: var(--mono);
+    }
+
+    .chat-msg {
+      padding: 10px 14px;
+      max-width: 85%;
+      line-height: 1.5;
+      word-break: break-word;
+      border: 1px solid transparent;
+    }
+
+    .chat-msg.user {
+      align-self: flex-end;
+      background: var(--panel-strong);
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .chat-msg.assistant {
+      align-self: flex-start;
+      background: transparent;
+      color: var(--text);
+      border-left: 2px solid var(--accent);
+    }
+
+    .chat-form {
+      padding: 12px;
+      display: flex;
+      gap: 8px;
+      border-top: 1px solid var(--line);
+      background: var(--panel-strong);
+    }
+
+    .chat-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      color: var(--text);
+      padding: 10px 12px;
+      font-size: 0.85rem;
+      outline: none;
+      font-family: var(--mono);
+    }
+
+    .chat-input:focus {
+      border-color: var(--accent);
+    }
+
+    .chat-send-btn {
+      background: var(--accent);
+      color: #000;
+      border: 1px solid #000;
+      padding: 0 16px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--mono);
+      text-transform: uppercase;
+      transition: background 150ms ease;
+    }
+
+    .chat-send-btn:hover {
+      background: #ff7529;
     }
 
     @media (max-width: 980px) {
@@ -707,30 +843,18 @@
         min-height: auto;
         padding-top: 36px;
       }
-
       .project-main-inner {
         grid-template-columns: 1fr;
       }
-
       .contact-wrap {
         grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 760px) {
-      .section {
-        padding-top: 54px;
-      }
-
-      .skills-grid,
-      .project-grid {
+      .skills-grid, .project-grid {
         grid-template-columns: 1fr;
       }
-
-      .nav {
-        border-radius: 18px;
-      }
-
       .nav-inner {
         justify-content: center;
       }
@@ -760,15 +884,15 @@
 
     <section class="hero section" id="top">
       <div class="reveal">
-        <span class="eyebrow">AI | Robotics | Applied Systems</span>
+        <span class="eyebrow">SYS.INIT // Robotics & AI</span>
         <h1>Kalaivanan K</h1>
-        <p class="hero-role">AI & Robotics Engineer</p>
+        <p class="hero-role">Robotics Software Engineer</p>
         <p class="hero-tagline">
           Building intelligent robotics systems that move from simulation to real-world execution with practical autonomy, live control interfaces, and robust perception pipelines.
         </p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="#projects">View Projects</a>
-          <a class="btn btn-secondary" href="#contact">Contact</a>
+          <a class="btn btn-primary" href="#projects">Deploy Projects</a>
+          <a class="btn btn-secondary" href="#contact">Init Contact</a>
         </div>
       </div>
 
@@ -779,29 +903,29 @@
           </div>
           <div class="profile-copy">
             <h3>Kalaivanan K</h3>
-            <p>AI & Robotics Engineer building field-ready autonomous systems.</p>
+            <p>Robotics Software Engineer building field-ready autonomous systems.</p>
           </div>
         </div>
-        <span class="eyebrow">Current Focus</span>
-        <p style="color: var(--text-soft); margin-bottom: 8px;">
-          AI & Robotics Intern at ARAI Solutions, developing LLM-powered document intelligence workflows and practical automation systems.
+        <span class="eyebrow" style="margin-bottom: 8px;">Active Thread</span>
+        <p style="color: var(--text-soft); font-size: 0.9rem;">
+          Developing autonomous robotics software architectures, navigation stacks, and sensor processing pipelines for real-world robotic chassis.
         </p>
         <div class="stat-grid">
           <div class="stat">
             <h3>3+</h3>
-            <p>Core projects shipped</p>
+            <p>Systems Shipped</p>
           </div>
           <div class="stat">
-            <h3>ROS2</h3>
-            <p>Navigation stack work</p>
+            <h3>ROS 2</h3>
+            <p>Nav Stack</p>
           </div>
           <div class="stat">
-            <h3>2026</h3>
-            <p>B.Tech graduation year</p>
+            <h3>HW</h3>
+            <p>Sensor Fusion</p>
           </div>
           <div class="stat">
-            <h3>CGPA 8.1</h3>
-            <p>AI & DS track</p>
+            <h3>CV</h3>
+            <p>Perception</p>
           </div>
         </div>
       </aside>
@@ -809,27 +933,27 @@
 
     <section class="section reveal" id="about">
       <div class="section-head">
-        <h2>About Me</h2>
+        <h2>About Module</h2>
         <p>Hands-on engineer focused on AI systems, robotics autonomy, and real deployment outcomes.</p>
       </div>
       <article class="about-card">
         <p>
-          I am an AI and Robotics Engineer with a B.Tech background in Artificial Intelligence and Data Science, building practical systems across autonomous robotics and document intelligence.
-          My work combines machine learning, computer vision, and full-stack interfaces to deliver usable products rather than isolated models.
+          I am a Robotics Software Engineer working at the intersection of AI, perception, and autonomous platforms.
+          My work combines machine learning, computer vision, and embedded systems to deliver robust robotic architectures rather than isolated models.
         </p>
         <ul class="about-points">
           <li>Developed autonomous navigation systems using LiDAR-based SLAM and obstacle-aware planning.</li>
-          <li>Built web dashboards for remote robot control, live video streaming, and gesture-driven interaction.</li>
-          <li>Designed LLM-powered workflows to extract structured outputs from unstructured documents.</li>
-          <li>Comfortable owning end-to-end pipelines from data and inference logic to deployment UI.</li>
+          <li>Built web dashboards for remote robot control, live video streaming, and low-latency interaction.</li>
+          <li>Integrated multi-sensor hardware pipelines including microcontrollers, LiDAR units, and radar modules.</li>
+          <li>Comfortable owning end-to-end pipelines from sensor data and inference logic to live deployment interfaces.</li>
         </ul>
       </article>
     </section>
 
     <section class="section reveal" id="skills">
       <div class="section-head">
-        <h2>Skills</h2>
-        <p>Focused stack for AI application development, autonomous robotics, and deployment-ready systems.</p>
+        <h2>Tech Stack</h2>
+        <p>Focused capabilities for autonomous robotics, AI application development, and deployment-ready systems.</p>
       </div>
       <div class="skills-grid">
         <article class="skill-card">
@@ -844,29 +968,30 @@
         <article class="skill-card">
           <h3>Robotics</h3>
           <div class="tags">
-            <span class="tag">ROS2</span>
+            <span class="tag">ROS 2</span>
             <span class="tag">Nav2</span>
             <span class="tag">SLAM</span>
             <span class="tag">Autonomous Navigation</span>
           </div>
         </article>
         <article class="skill-card">
-          <h3>Hardware</h3>
+          <h3>Hardware & Embedded</h3>
           <div class="tags">
             <span class="tag">Raspberry Pi</span>
             <span class="tag">Arduino</span>
             <span class="tag">LiDAR</span>
+            <span class="tag">Radar</span>
             <span class="tag">IMU</span>
           </div>
         </article>
         <article class="skill-card">
-          <h3>Tools</h3>
+          <h3>Tools & Frameworks</h3>
           <div class="tags">
-            <span class="tag">Git</span>
             <span class="tag">Linux</span>
+            <span class="tag">Git</span>
             <span class="tag">OpenCV</span>
             <span class="tag">TensorFlow</span>
-            <span class="tag">Scikit-learn</span>
+            <span class="tag">FastAPI</span>
           </div>
         </article>
       </div>
@@ -874,24 +999,24 @@
 
     <section class="section reveal" id="projects">
       <div class="section-head">
-        <h2>Projects</h2>
-        <p>Applied systems with measurable engineering outcomes, from autonomous vehicles to LLM document pipelines.</p>
+        <h2>Active Projects</h2>
+        <p>Applied systems with measurable engineering outcomes, from autonomous vehicles to computer vision pipelines.</p>
       </div>
 
       <article class="project-main">
         <div class="project-main-inner">
           <div>
-            <span class="eyebrow">Featured Project</span>
+            <span class="eyebrow" style="margin-bottom:12px;">Primary Architecture</span>
             <h3 class="project-title">Autonomous UGV with SLAM, Navigation, and Web-Based Remote Control</h3>
             <p class="project-copy">
               Built an autonomous unmanned ground vehicle to solve real-time mapping and safe path execution in dynamic spaces. The system integrates LiDAR-based SLAM for map creation, Nav2-enabled navigation for obstacle-aware movement, and a responsive web dashboard for operator control.
             </p>
-            <div class="tags" style="margin-bottom: 10px;">
-              <span class="tag">ROS2</span>
+            <div class="tags" style="margin-bottom: 16px;">
+              <span class="tag">ROS 2</span>
               <span class="tag">Nav2</span>
               <span class="tag">LiDAR SLAM</span>
               <span class="tag">OpenCV</span>
-              <span class="tag">WebRTC / Streaming UI</span>
+              <span class="tag">WebRTC UI</span>
             </div>
             <ul class="highlight-points">
               <li>Integrated live video feed and low-latency teleoperation dashboard for field operation.</li>
@@ -900,40 +1025,40 @@
             </ul>
           </div>
           <aside class="project-stats">
-            <h4>Key Achievements</h4>
-            <div class="metric"><span>Real-world mapping</span><b>LiDAR SLAM</b></div>
-            <div class="metric"><span>Navigation stack</span><b>ROS2 + Nav2</b></div>
-            <div class="metric"><span>Operator interface</span><b>Live web dashboard</b></div>
-            <div class="metric"><span>Human interaction</span><b>Gesture control</b></div>
-            <div class="metric"><span>Deployment mode</span><b>Autonomous + Remote</b></div>
+            <h4>System Metrics</h4>
+            <div class="metric"><span>Mapping</span><b>LiDAR SLAM</b></div>
+            <div class="metric"><span>Nav Stack</span><b>ROS 2 + Nav2</b></div>
+            <div class="metric"><span>Interface</span><b>Live Dashboard</b></div>
+            <div class="metric"><span>Interaction</span><b>Gesture Control</b></div>
+            <div class="metric"><span>Mode</span><b>Autonomous + Remote</b></div>
           </aside>
         </div>
       </article>
 
-      <div class="project-grid" style="margin-top: 14px;">
-        <article class="project-card tilt-card">
-          <h3>AI-Based Heart Disease Diagnosis from X-rays</h3>
+      <div class="project-grid" style="margin-top: 16px;">
+        <article class="project-card">
+          <h3>Computer Vision Chest X-ray Diagnostic Assistant</h3>
           <p>
-            Developed a CNN-based diagnostic assistant that analyzes chest X-ray images and predicts heart disease risk with a usable web interface for quick inference.
+            Developed a CNN-based medical image analysis assistant that processes chest X-rays to detect cardiac abnormalities with an intuitive web interface for quick inference.
           </p>
           <div class="tags">
             <span class="tag">TensorFlow</span>
-            <span class="tag">Keras</span>
-            <span class="tag">Computer Vision</span>
-            <span class="tag">Flask UI</span>
+            <span class="tag">OpenCV</span>
+            <span class="tag">Medical Imaging</span>
+            <span class="tag">Flask</span>
           </div>
         </article>
 
-        <article class="project-card tilt-card">
-          <h3>LLM-Based Document Processing System</h3>
+        <article class="project-card">
+          <h3>ScriptGuard AI: Prescription Digitization</h3>
           <p>
-            Built an LLM-powered web app to extract structured information from PDFs and text, then generate outputs including summaries, instructions, quizzes, and flashcards.
+            Designed a web-based healthcare software system combining OCR and structured data extraction to transform unstructured clinical prescription text into manageable digital health records.
           </p>
           <div class="tags">
-            <span class="tag">Open-source LLMs</span>
-            <span class="tag">RAG-style flow</span>
-            <span class="tag">Document Intelligence</span>
-            <span class="tag">Local Deployment</span>
+            <span class="tag">Computer Vision</span>
+            <span class="tag">OCR</span>
+            <span class="tag">Data Pipeline</span>
+            <span class="tag">Full-Stack</span>
           </div>
         </article>
       </div>
@@ -941,26 +1066,17 @@
 
     <section class="section reveal" id="experience">
       <div class="section-head">
-        <h2>Experience</h2>
-        <p>Industry exposure across AI workflows, NLP systems, and real-world intelligent automation.</p>
+        <h2>Experience Log</h2>
+        <p>Engineering exposure across autonomous mobile robotics stacks, sensor fusion, and intelligent software.</p>
       </div>
       <div class="timeline">
         <article class="time-item">
           <div class="time-head">
-            <h3>AI & Robotics Intern - ARAI Solutions</h3>
-            <span class="time-period">Dec 2025 - Present</span>
+            <h3>Robotics Software Engineer</h3>
+            <span class="time-period">Industry Deployment</span>
           </div>
           <p>
-            Worked with LLM-based retrieval pipelines to generate structured outputs from unstructured documents. Built web-facing interfaces and contributed to robotics and AI automation workflows.
-          </p>
-        </article>
-        <article class="time-item">
-          <div class="time-head">
-            <h3>Intern - TechShikSha</h3>
-            <span class="time-period">Aug 2024 - Sep 2024</span>
-          </div>
-          <p>
-            Contributed to NLP and document intelligence tasks, and gained enterprise process exposure through an industry visit to Microsoft.
+            Focused on autonomous mobile robotics stacks, single-board computer software architecture, sensor integration (LiDAR, radar, microcontrollers), and autonomous navigation using ROS 2.
           </p>
         </article>
       </div>
@@ -984,38 +1100,38 @@
 
     <section class="section reveal" id="contact">
       <div class="section-head">
-        <h2>Contact</h2>
-        <p>Open to AI engineering, robotics, and intelligent automation opportunities.</p>
+        <h2>Comm Protocol</h2>
+        <p>Open to robotics engineering, autonomous systems, and intelligent automation discussions.</p>
       </div>
       <div class="contact-wrap">
         <article class="contact-card">
-          <h3 style="margin-bottom: 6px;">Let us connect</h3>
-          <p style="color: var(--text-soft);">Best way to reach me for collaborations, roles, or project discussions.</p>
+          <h3 style="margin-bottom: 6px; font-family: var(--mono); text-transform: uppercase;">Endpoints</h3>
+          <p style="color: var(--text-soft); font-size: 0.9rem;">Best way to reach me for collaborations, roles, or technical discussions.</p>
           <div class="contact-list">
             <div class="contact-item">
-              <span>Email</span>
+              <span>MAIL</span>
               <a href="mailto:kalaivanankkalai5@gmail.com">kalaivanankkalai5@gmail.com</a>
             </div>
             <div class="contact-item">
-              <span>LinkedIn</span>
-              <a href="https://www.linkedin.com/in/kalaivanan-k-971bba287" target="_blank" rel="noopener noreferrer">linkedin.com/in/kalaivanan-k-971bba287</a>
+              <span>LINKEDIN</span>
+              <a href="https://www.linkedin.com/in/kalaivanan-k-971bba287" target="_blank" rel="noopener noreferrer">/in/kalaivanan-k-971bba287</a>
             </div>
             <div class="contact-item">
-              <span>GitHub</span>
-              <a href="https://github.com/Kalaivanankalai123" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">github.com/Kalaivanankalai123</a>
+              <span>GITHUB</span>
+              <a href="https://github.com/Kalaivanankalai123" target="_blank" rel="noopener noreferrer">/Kalaivanankalai123</a>
             </div>
           </div>
         </article>
 
         <article class="contact-form">
-          <h3 style="margin-bottom: 6px;">Quick Message</h3>
-          <p style="color: var(--text-soft);">Send directly to my inbox. Your details are stored securely for follow-up.</p>
+          <h3 style="margin-bottom: 6px; font-family: var(--mono); text-transform: uppercase;">Direct Message</h3>
+          <p style="color: var(--text-soft); font-size: 0.9rem;">Send directly to my inbox. Data is stored securely for follow-up.</p>
           <form id="mailForm">
-            <input class="input" id="senderName" name="name" type="text" placeholder="Your name" required>
-            <input class="input" id="senderEmail" name="email" type="email" placeholder="Your email" required>
-            <input class="input" id="senderPhone" name="phone" type="tel" placeholder="Your mobile number" required>
-            <textarea id="senderMessage" name="message" placeholder="Your message" required></textarea>
-            <button class="btn btn-primary" type="submit">Send Message</button>
+            <input class="input" id="senderName" name="name" type="text" placeholder="NAME_INPUT" required>
+            <input class="input" id="senderEmail" name="email" type="email" placeholder="EMAIL_INPUT" required>
+            <input class="input" id="senderPhone" name="phone" type="tel" placeholder="PHONE_INPUT" required>
+            <textarea id="senderMessage" name="message" placeholder="MESSAGE_PAYLOAD" required></textarea>
+            <button class="btn btn-primary" type="submit" style="width: 100%;">Execute Send</button>
             <p id="formStatus" class="form-status"></p>
           </form>
         </article>
@@ -1023,8 +1139,29 @@
     </section>
 
     <footer class="foot">
-      Designed and developed by Kalaivanan K | AI & Robotics Engineer
+      Engineered by Kalaivanan K | Robotics Software Engineer
     </footer>
+  </div>
+
+  <!-- Floating Chat Toggle & Window -->
+  <button id="chatToggle" class="chat-bubble-btn" aria-label="Open AI Chat">
+    chat💬
+  </button>
+
+  <div id="chatWindow" class="chat-window hidden">
+    <div class="chat-header">
+      <h4>SYS.AI_ASSISTANT</h4>
+      <button id="chatClose" class="chat-close" aria-label="Close Chat">&times;</button>
+    </div>
+    <div id="chatMessages" class="chat-messages">
+      <div class="chat-msg assistant">
+        > SYSTEM BOOT SUCCESSFUL.<br>> I am Kalaivanan's AI assistant powered by Gemini. Ask me anything about his robotics work, ROS 2 projects, or embedded systems.
+      </div>
+    </div>
+    <form id="chatForm" class="chat-form">
+      <input type="text" id="chatInput" class="chat-input" placeholder="Enter query..." autocomplete="off" required>
+      <button type="submit" class="chat-send-btn">Send</button>
+    </form>
   </div>
 
   <script>
@@ -1045,24 +1182,7 @@
       observer.observe(item);
     });
 
-    const tiltCards = document.querySelectorAll(".tilt-card");
-
-    tiltCards.forEach((card) => {
-      card.addEventListener("mousemove", (event) => {
-        const rect = card.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-        const rotateY = ((x / rect.width) - 0.5) * 6;
-        const rotateX = ((y / rect.height) - 0.5) * -6;
-        card.style.transform = `translateY(-4px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      });
-
-      card.addEventListener("mouseleave", () => {
-        card.style.transform = "";
-      });
-    });
-
-    // Modified Contact Form Script using Web3Forms
+    // Contact Form Script via Web3Forms
     const form = document.getElementById("mailForm");
     const formStatus = document.getElementById("formStatus");
 
@@ -1073,7 +1193,7 @@
       const phone = document.getElementById("senderPhone").value.trim();
       const msg = document.getElementById("senderMessage").value.trim();
 
-      formStatus.textContent = "Sending...";
+      formStatus.textContent = "> SENDING_PAYLOAD...";
       
       try {
         const response = await fetch("https://api.web3forms.com/submit", {
@@ -1083,7 +1203,6 @@
             Accept: "application/json",
           },
           body: JSON.stringify({
-            // ---> PASTE YOUR WEB3FORMS ACCESS KEY HERE <---
             access_key: "317a6766-f12a-4dc6-8263-e9f4c93c0b16", 
             name: name,
             email: email,
@@ -1095,18 +1214,18 @@
         const result = await response.json();
         
         if (response.status === 200) {
-          formStatus.textContent = "Message sent successfully! I will get back to you soon.";
+          formStatus.textContent = "> MESSAGE SENT SUCCESSFULLY. AWAIT REPLY.";
           form.reset();
         } else {
-          formStatus.textContent = result.message || "Something went wrong. Please try again.";
+          formStatus.textContent = "> ERROR: " + (result.message || "TRANSMISSION FAILED.");
         }
       } catch (error) {
-        formStatus.textContent = "Could not send right now. Please try again in a moment.";
+        formStatus.textContent = "> ERROR: CONNECTION REFUSED.";
         console.error("Contact submit failed:", error);
       }
     });
 
-    // Kept your viewer analytics intact!
+    // Viewer Tracking Script
     async function trackViewer() {
       const payload = {
         page: window.location.pathname || "/portfolio.html",
@@ -1130,6 +1249,81 @@
       }
     }
 
+    // AI Chat Widget Script
+    const chatToggle = document.getElementById("chatToggle");
+    const chatClose = document.getElementById("chatClose");
+    const chatWindow = document.getElementById("chatWindow");
+    const chatForm = document.getElementById("chatForm");
+    const chatInput = document.getElementById("chatInput");
+    const chatMessages = document.getElementById("chatMessages");
+
+    let chatHistory = [];
+
+    chatToggle.addEventListener("click", () => {
+      chatWindow.classList.toggle("hidden");
+      if (!chatWindow.classList.contains("hidden")) {
+        chatInput.focus();
+      }
+    });
+
+    chatClose.addEventListener("click", () => {
+      chatWindow.classList.add("hidden");
+    });
+
+    function appendChatMessage(role, text) {
+      const msgDiv = document.createElement("div");
+      msgDiv.className = `chat-msg ${role}`;
+      // Add terminal prompt arrow for assistant
+      msgDiv.innerHTML = role === "assistant" ? `> ${text}` : text;
+      chatMessages.appendChild(msgDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    chatForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const userText = chatInput.value.trim();
+      if (!userText) return;
+
+      appendChatMessage("user", userText);
+      chatInput.value = "";
+
+      const typingIndicator = document.createElement("div");
+      typingIndicator.className = "chat-msg assistant";
+      typingIndicator.textContent = "> PROCESSING QUERY...";
+      chatMessages.appendChild(typingIndicator);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/chat`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: userText,
+            history: chatHistory
+          })
+        });
+
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}`);
+        }
+
+        const data = await res.json();
+        chatMessages.removeChild(typingIndicator);
+        const replyText = data.reply || "ERROR: NO RESPONSE GENERATED.";
+        appendChatMessage("assistant", replyText);
+
+        chatHistory.push({ role: "user", content: userText });
+        chatHistory.push({ role: "assistant", content: replyText });
+      } catch (err) {
+        if (chatMessages.contains(typingIndicator)) {
+          chatMessages.removeChild(typingIndicator);
+        }
+        appendChatMessage("assistant", "ERROR: CONNECTION TO HOST REFUSED.");
+        console.error("Chat request failed:", err);
+      }
+    });
+
+    // Industrial Point Cloud Background
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
     let points = [];
@@ -1144,11 +1338,11 @@
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
-      points = Array.from({ length: Math.max(30, Math.floor(width / 40)) }, () => ({
+      points = Array.from({ length: Math.max(40, Math.floor(width / 35)) }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4
       }));
     }
 
@@ -1163,27 +1357,25 @@
         if (p.x < 0 || p.x > width) p.vx *= -1;
         if (p.y < 0 || p.y > height) p.vy *= -1;
 
-        ctx.beginPath();
-        ctx.fillStyle = "rgba(67, 211, 255, 0.6)";
-        ctx.arc(p.x, p.y, 1.4, 0, Math.PI * 2);
-        ctx.fill();
+        // Draw hardware nodes instead of soft circles
+        ctx.fillStyle = "rgba(255, 94, 0, 0.8)";
+        ctx.fillRect(p.x - 1.5, p.y - 1.5, 3, 3);
 
         for (let j = i + 1; j < points.length; j++) {
           const q = points[j];
           const dx = p.x - q.x;
           const dy = p.y - q.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 95) {
-            const alpha = (1 - dist / 95) * 0.17;
+          if (dist < 100) {
+            const alpha = (1 - dist / 100) * 0.25;
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(0, 209, 255, ${alpha})`;
+            ctx.strokeStyle = `rgba(32, 48, 70, ${alpha})`;
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(q.x, q.y);
             ctx.stroke();
           }
         }
       }
-
       requestAnimationFrame(animateParticles);
     }
 

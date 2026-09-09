@@ -15,6 +15,10 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
+# --- Import Google GenAI SDK ---
+from google import genai
+from google.genai import types
+
 BASE_DIR = Path(__file__).resolve().parent
 
 def resolve_db_path() -> Path:
@@ -22,13 +26,11 @@ def resolve_db_path() -> Path:
     if configured:
         return Path(configured)
 
-    # Railway exposes this when a volume is attached.
     railway_mount = os.getenv("RAILWAY_VOLUME_MOUNT_PATH", "").strip()
     if railway_mount:
         return Path(railway_mount) / "viewer_analytics.db"
 
     return BASE_DIR / "viewer_analytics.db"
-
 
 DB_PATH = resolve_db_path()
 SCHEMA_PATH = BASE_DIR / "data.sql"
@@ -50,12 +52,11 @@ async def lifespan(_: FastAPI):
     init_db()
     yield
 
-app = FastAPI(title="Viewer Analytics API", lifespan=lifespan)
+app = FastAPI(title="Kalaivanan Portfolio API", lifespan=lifespan)
 
-# CORS Middleware to allow your frontend to talk to your backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Adjust this to your domain once deployed
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -64,6 +65,7 @@ app.add_middleware(
 if ASSETS_DIR.is_dir():
     app.mount("/assets", StaticFiles(directory=str(ASSETS_DIR)), name="assets")
 
+# --- Schemas ---
 class ViewerIn(BaseModel):
     page: str = Field(default="/portfolio", max_length=255)
     referrer: str = Field(default="", max_length=500)
@@ -77,9 +79,18 @@ class ViewerIn(BaseModel):
 class ContactMessageIn(BaseModel):
     name: str = Field(min_length=2, max_length=120)
     email: str = Field(min_length=5, max_length=180)
-    phone: str = Field(min_length=5, max_length=50) # Added phone field
+    phone: str = Field(min_length=5, max_length=50)
     message: str = Field(min_length=3, max_length=5000)
 
+class ChatMessage(BaseModel):
+    role: str = Field(..., description="Role: user or assistant")
+    content: str = Field(..., min_length=1, max_length=2000)
+
+class ChatRequest(BaseModel):
+    message: str = Field(min_length=1, max_length=1000)
+    history: list[ChatMessage] = Field(default_factory=list)
+
+# --- Database & Utility Functions ---
 def _get_connection() -> sqlite3.Connection:
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
@@ -132,6 +143,33 @@ def _send_contact_email(name: str, email: str, phone: str, message: str, submitt
     except Exception as exc:
         return False, str(exc)
 
+# --- Gemini API Configuration ---
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
+gemini_client = genai.Client(api_key=GEMINI_API_KEY) if GEMINI_API_KEY else None  #
+
+PORTFOLIO_SYSTEM_PROMPT = """
+You are the AI Assistant on Kalaivanan K's portfolio website. 
+Your role is to represent Kalaivanan K professionally to recruiters, hiring managers, and collaborators.
+
+Profile Details:
+- Role: Robotics Software Engineer in the AI and robotics domain.
+- Core Skills:
+  * Programming: Python, C++, SQL, JavaScript, ROS 2
+  * Robotics: Autonomous mobile robots, embedded software development, navigation stacks, microcontrollers, LiDAR scanners, radar modules.
+- Featured Projects & Experience:
+  1. Husarion ROSbot XL Integration: Evaluated and planned a unified software integration workflow for a Husarion ROSbot XL mobile robot running on a single-board computer for hospital monitoring applications.
+  2. Autonomous UGV: Real-world LiDAR SLAM, Nav2 path planning, web teleoperation dashboard.
+  3. ScriptGuard AI: Designed a web-based healthcare software system for digital prescription text extraction and automated record management.
+  4. AI-Based Heart Disease Diagnosis: Computer vision medical image analysis for chest X-ray detection.
+- Contact: kalaivanankkalai5@gmail.com | LinkedIn: linkedin.com/in/kalaivanan-k-971bba287 | GitHub: github.com/Kalaivanankalai123
+
+Guidelines:
+- Keep answers concise, technical, and professional (2-4 sentences unless the user asks for a deep dive).
+- Do not make up achievements or projects outside of what is listed above.
+- If asked about hiring or contacting Kalaivanan, provide his direct email or encourage submitting the contact form on the page.
+"""
+
+# --- Endpoints ---
 @app.get("/")
 def home() -> Response:
     if PORTFOLIO_FILE.is_file():
@@ -140,7 +178,7 @@ def home() -> Response:
 
 @app.get("/health")
 def health() -> dict[str, str]:
-    return {"status": "ok", "message": "Viewer analytics backend is running"}
+    return {"status": "ok", "message": "Backend is running"}
 
 @app.get("/favicon.ico")
 def favicon() -> Response:
@@ -186,7 +224,6 @@ def create_viewer(payload: ViewerIn, request: Request) -> dict[str, Any]:
 
 @app.post("/api/portfolio/view")
 def create_portfolio_view(payload: ViewerIn, request: Request) -> dict[str, Any]:
-    """Compatibility endpoint for existing portfolio tracking script."""
     return create_viewer(payload, request)
 
 @app.get("/api/viewers")
@@ -295,7 +332,43 @@ def list_contact_messages(limit: int = Query(default=20, ge=1, le=200)) -> dict[
         ).fetchall()
     return {"count": len(rows), "items": [dict(row) for row in rows]}
 
+# --- AI Chatbot Endpoint ---
+@app.post("/api/chat")
+def chat_with_assistant(payload: ChatRequest) -> dict[str, str]:
+    if not gemini_client:
+        return {
+            "reply": "The AI assistant is temporarily unavailable because the API key is not configured on the server."
+        }
+
+    # Map our history format to Gemini's Content types
+    formatted_history = []
+    for msg in payload.history[-6:]:
+        # Gemini uses 'model' for the assistant role
+        role = "model" if msg.role == "assistant" else "user"
+        formatted_history.append(
+            types.Content(role=role, parts=[types.Part.from_text(text=msg.content)]) #
+        )
+
+    # Add the newest user message
+    formatted_history.append(
+        types.Content(role="user", parts=[types.Part.from_text(text=payload.message)]) #
+    )
+
+    try:
+        # Call Gemini 2.5 Flash
+        response = gemini_client.models.generate_content(
+            model='gemini-3.6-flash', #
+            contents=formatted_history,
+            config=types.GenerateContentConfig(
+                system_instruction=PORTFOLIO_SYSTEM_PROMPT, #
+                temperature=0.4, #
+                max_output_tokens=300, #
+            )
+        )
+        return {"reply": response.text} #
+    except Exception as exc:
+        return {"reply": f"An error occurred while generating a response: {str(exc)}"}
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
-    
